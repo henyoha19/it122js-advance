@@ -1,0 +1,15 @@
+{
+  "name": "week1",
+  "version": "1.0.0",
+  "description": "(my application is about car list)",
+  "main": "demo.js",
+  "scripts": {
+    "test": "(echo\"Error: no test specified\" && exit 1)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(github.com/henyoha19/it122-javascript2)"
+  },
+  "author": "Henock W",
+  "license": "ISC"
+}
