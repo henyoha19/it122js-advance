@@ -1,4 +1,4 @@
-//an array of at least 5 items (objects), where each item has at least 4 attributes 
+ //an array of at least 5 items (objects), where each item has at least 4 attributes 
 
 let cars = [
     { carname : 'toyota', year : '2020', color : 'red', type : ['sedan', 'suv', 'sports'] },
@@ -12,5 +12,6 @@ let cars = [
     //an exported getAll method that returns all array items
 
     export function     getAll() {
-        return cars; 
+            return cars; 
+    
         }

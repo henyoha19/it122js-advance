@@ -1,4 +1,4 @@
-const cars = require("./data.js");
+const car = require("./data.js");
 //web server on port 3000 and respond the request
 
 import { createServer } from "http"; 

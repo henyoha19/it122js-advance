@@ -11,5 +11,7 @@
     "url": "(github.com/henyoha19/it122js-advance)"
   },
   "author": "Henock W",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module"
+  
 }
