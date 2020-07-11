@@ -1,7 +1,8 @@
+const cars = require("./data.js");
 //web server on port 3000 and respond the request
 
-const http = require("http"); 
-http.createServer((req,res) => {
+import { createServer } from "http"; 
+createServer((req,res) => {
   const path = req.url.toLowerCase();
 
   switch(path) {

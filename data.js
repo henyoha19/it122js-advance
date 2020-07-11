@@ -11,6 +11,6 @@ let cars = [
 
     //an exported getAll method that returns all array items
 
-    exports.getAll = () => {
+    export function     getAll() {
         return cars; 
         }
