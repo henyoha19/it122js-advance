@@ -1,5 +1,5 @@
 {
-  "name": "week1",
+  "name": "it122js",
   "version": "1.0.0",
   "description": "(my application is about car list)",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "url": "(github.com/henyoha19/it122js-advance)"
   },
   "author": "Henock W",
-  "license": "ISC",
-  "type": "module"
+  "license": "ISC"
+ 
   
 }

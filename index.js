@@ -1,8 +1,10 @@
-const car = require("./data.js");
+const cars = require("./data.js");
+//get all list of car
+let listCars = cars.getAll();
 //web server on port 3000 and respond the request
 
-import { createServer } from "http"; 
-createServer((req,res) => {
+const http = require("http");
+http.createServer((req,res) => {
   const path = req.url.toLowerCase();
 
   switch(path) {
