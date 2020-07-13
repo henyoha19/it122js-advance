@@ -10,7 +10,7 @@ http.createServer((req,res) => {
   switch(path) {
     case '/':
       res.writeHead(200, {'Content-Type': 'text/plain'});
-      res.end('This is my Home page \n' + 'arraylenght:'+ listCars.length);
+      res.end('This is my Home page \n' + 'Number of Cars:'+ listCars.length);
       break;
 
     case '/about':
