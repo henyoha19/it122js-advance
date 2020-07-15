@@ -2,24 +2,45 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const cars = require("./data.js");
+
 const app = express();
 
+//set template engine
+const exphbs = require("express-handlebars"); // should be at top of module 
+app.engine('handlebars', exphbs({defaultLayout: false}));
+app.set("view engine", "handlebars");
+
+// configure Express app 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public')); // set location for static files
 app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
 
 
-// send static file as response
+let listCars = cars.getAll();
+
 app.get('/', (req, res) => {
   res.type('text/html');
-  res.sendFile(__dirname + '/public/home.html'); 
- });
+  res.render('home', {cars: listCars});
+});
+
+app.get('/detail', (req, res) => {
+  const carname = req.query.carname
+  res.render('detail', {carname: carname, stats: cars.getlistcar(carname)});
+});
+
+
+
+
  
  // send plain text response
  app.get('/about', (req, res) => {
   res.type('text/plain');
   res.send('About page');
  });
+
+
  // define 404 handler
  app.use( (req,res) => {
   res.type('text/plain'); 
@@ -31,34 +52,10 @@ app.get('/', (req, res) => {
   console.log('Express started'); 
  });
 
- app.get('/foo', (req,res,next) => {
-  if(Math.random() < 0.5) return next();
-  res.send('sometimes this');
-});
-
-app.get('/foo', (req,res) => {
-  res.send('and sometimes that');
-}); 
+ 
 
 
-app.get('/user(user)?', (req,res) => {
-  res.render('user');
-});
 
-app.get('/user/:user', (req, res) => {
-  var info = users.find((user) => {
-    return user.name = req.params.name;
-  });
-  if (!info) return next(); // will eventually fall through to 404
-    res.send(info);
-});
 
-module.exports = function(app) {
-  app.get('/', (req,res) => {
-    app.render('home');
-  });
-
-  // other routes
-};
 
 

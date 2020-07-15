@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Car Dealer</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+  </head>
+  <body>
+   <h1>Welcome to Car Dealer!</h1> 
+   <h2>Select a car to learn more:</h2>
+   
+   <!-- Using the #each loop through each item in cars array. -->
+    <ul>
+        {{#each cars}}
+            <li><a href= "/detail?carname={{carname}}">{{carname}}</a></li>
+        {{/each}}
+    </ul>
+  </body>
+</html>

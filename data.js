@@ -1,11 +1,11 @@
  //an array of at least 5 items (objects), where each item has at least 4 attributes 
 
 const cars = [
-    { carname : 'toyota', year : '2020', color : 'red', type : 'sedan'},
-    { carname : 'ford', year : '2019', color :'black', type : 'minivan'},
-    { carname : 'nissan', year : '2018', color :'white', type : 'hatchback'},
-    { carname : 'fiat', year : '2017', color : 'brown', type :'station wagen'},
-    { carname : 'bmw', year : '2016', color : 'blue', type :'electric'}
+    { carname : 'Toyota', year : '2020', color : 'red', type : 'sedan'},
+    { carname : 'Ford', year : '2019', color :'black', type : 'minivan'},
+    { carname : 'Nissan', year : '2018', color :'white', type : 'hatchback'},
+    { carname : 'Fiat', year : '2017', color : 'brown', type :'station wagen'},
+    { carname : 'BMW', year : '2016', color : 'blue', type :'electric'}
     ];
 
 
@@ -15,4 +15,8 @@ const cars = [
     exports.getAll = () => {
         return cars;
 
+    }
+    exports.getlistcar = year => {
+        const car = cars.find(cars => cars.year === year);
+        return cars;
     }
