@@ -48,3 +48,5 @@ const cars = [
         // if old & new array lengths differ, item was added
         return {added: oldLength !== cars.length, total: cars.length };
     };
+    
+    
