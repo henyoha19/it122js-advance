@@ -3,12 +3,12 @@
 const Car = require("../models/car");
 
 //Car.find({}, (err, result) => {
-// output error if one occured
+ //output error if one occured
 //if (err) {
-   // console.log(err);
+   //console.log(err);
 //} else {
     //otherwise output the array of documents
-  //  console.log(result);
+  //console.log(result);
 
 //}
 //return
