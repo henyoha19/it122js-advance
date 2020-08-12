@@ -15,16 +15,10 @@ const cars = [
     exports.getAll = () => {
         return cars;
 
-    }
-    exports.getlistcar = year => {
-        const car = cars.find(cars => cars.year === year);
-        return cars;
-    }
-
-
+    };
+    
     exports.get = (carname) => {
         return cars.find((item) => {
-            return item.carname === carname;
             return item.carname.toLowerCase() === carname.toLowerCase();
         });
     };
@@ -49,4 +43,4 @@ const cars = [
         return {added: oldLength !== cars.length, total: cars.length };
     };
     
-    
+ 

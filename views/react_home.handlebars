@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>React App </title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+
+<div id="root"></div>
+<script type="text/babel">
+
+const ItemList = (props) => {
+    const bullets = props.items.map((item) => {
+        return <li onClick={props.handleClick} key={item._id}>{item.carname}</li>
+});
+return <ul>{bullets}</ul>
+}
+
+const ItemDetail = (props) => {
+    return <div>
+      <h3>Details for {props.item.carname}</h3>
+      <li>Color : { props.item.color} </li>
+      <li>Type : { props.item.type} </li>
+    </div>
+}
+    class App extends React.Component{
+      constructor(props){
+          super(props);
+          // Set initial state using data from server application
+          this.state = {
+            items: {{{ cars }}},
+            currentItem: { } // current selected item
+          };
+          this.selectItem =this.selectItem.bind(this);
+       }
+
+        selectItem (e) {
+            console.log(e.target.innerText)
+            const found = this.state.items.find((item) => {
+              return item.carname === e.target.innerText;
+            });
+            console.log(found)
+            this.setState({currentItem: found})
+        }
+
+      render() {
+        // render app UI elements
+        return (
+          <div>
+          <h2>Car List</h2>
+         <ItemList items={this.state.items}handleClick={this.selectItem} />
+         <hr />
+         <ItemDetail item={this.state.currentItem} />
+          </div>
+          );
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>

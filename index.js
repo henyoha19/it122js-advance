@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const Car = require("./models/car");
 
 
-//const cars = require("./data.js");
+const cars = require("./data");
 
 const app = express();
 
@@ -26,8 +26,45 @@ const exphbs = require("express-handlebars"); // should be at top of module
 app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 
+//notes
 
-//let listCars = cars.getAll();
+app.get('/', (req, res, next) => {
+  Car.find((err,cars) => {
+    console.log(cars)
+    if (err) return next(err);
+    res.render('react_home', {cars: JSON.stringify(cars)});
+  });
+});
+
+// send plain text response
+app.get('/about', (req, res) => {
+  res.type('text/plain');
+  res.send('About page');
+ });
+
+/*
+app.get('/', (req, res, next) => {
+  return Car.find({}).lean()
+  .then((cars) => {
+    console.log(cars)
+    res.render('react_home', {cars: JSON.stringify(cars)});
+  })  // passes
+  .catch(err => next(err));
+});
+
+*/
+app.get('/details', (req, res) => {
+  return Car.findOne({carname:req.query.carname}).lean()
+  .then((cars) => {
+    res.render('details', {cars});
+  })
+  .catch(err => next(err));
+});
+
+
+/*
+--------------------
+let listCars = cars.getAll();
 
 app.get('/', (req,res, next) => {
   Car.find((err,cars) => {
@@ -36,13 +73,11 @@ app.get('/', (req,res, next) => {
       res.render('home', {cars: JSON.stringify(cars)});
   });
 });
+----------------------
+*/
 
 
-// send plain text response
- app.get('/about', (req, res) => {
-  res.type('text/plain');
-  res.send('About page');
- });
+
 
 
  ///API 

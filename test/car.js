@@ -1,6 +1,6 @@
 'use strict'
 const expect = require("chai").expect;
-const cars = require("./data.js");
+const cars = require("./data");
 //get car
 
 describe("cars module", () => {

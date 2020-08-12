@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // remote db connection settings. For security, connectionString should be in a separate file not committed to git
-const connectionString = "mongodb+srv://dbuser:741089@cluster0.gwal3.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const connectionString = "mongodb+srv://dbuser:741089@cluster0.gwal3.mongodb.net/cars?retryWrites=true&w=majority";
 // local db connection settings 
 // const ip = process.env.ip || '127.0.0.1';
 // const connectionString = 'mongodb://' +ip+ '/<DB_NAME>';
