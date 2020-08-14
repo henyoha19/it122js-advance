@@ -14,9 +14,19 @@ const Car = require("../models/car");
 //return
 
 //});
-
+//all records
 Car.find({}).lean()
   .then((cars) => {
     console.log(cars);
   })
   .catch(err => next(err))
+// single records
+Car.find({"carname": "toyota"}).lean() 
+  .then((cars) => { 
+    console.log(cars); 
+  }) 
+    .catch(err => next(err));
+  
+ 
+  
+  
