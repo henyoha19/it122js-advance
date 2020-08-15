@@ -42,17 +42,6 @@ app.get('/about', (req, res) => {
   res.send('About page');
  });
 
-/*
-app.get('/', (req, res, next) => {
-  return Car.find({}).lean()
-  .then((cars) => {
-    console.log(cars)
-    res.render('react_home', {cars: JSON.stringify(cars)});
-  })  // passes
-  .catch(err => next(err));
-});
-
-*/
 app.get('/details', (req, res) => {
   return Car.findOne({carname:req.query.carname}).lean()
   .then((cars) => {
@@ -61,27 +50,7 @@ app.get('/details', (req, res) => {
   .catch(err => next(err));
 });
 
-
-/*
---------------------
-let listCars = cars.getAll();
-
-app.get('/', (req,res, next) => {
-  Car.find((err,cars) => {
-      console.log(cars)
-      if (err) return next(err);
-      res.render('home', {cars: JSON.stringify(cars)});
-  });
-});
-----------------------
-*/
-
-
-
-
-
  ///API 
-
 //get single items
 
  app.get('/api/cars/:carname', (req, res, next) => {

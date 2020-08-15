@@ -21,9 +21,16 @@ return <ul>{bullets}</ul>
 
 const ItemDetail = (props) => {
     return <div>
-      <h3>Details for {props.item.carname}</h3>
-      <li>Color : { props.item.color} </li>
-      <li>Type : { props.item.type} </li>
+      <h3>Details </h3>
+      <form>
+          carname:<input onChange={props.handleEdit} type="text" name="carname" value={props.item.carname ||""}  /><br/>
+          color:<input onChange={props.handleEdit} type="text" name= "color" value={props.item.color ||""}  /> <br/>
+          type:<input onChange={props.handleEdit} type="text" name="type" value={props.item.type ||""}  />      
+      </form>
+          <button onClick={props.handleClear}>Clear</button>
+          <button onClick={props.handleDelete}>Delete</button>
+          <button onClick={props.handleSave}>Save</button> 
+
     </div>
 }
     class App extends React.Component{
@@ -35,14 +42,71 @@ const ItemDetail = (props) => {
             currentItem: { } // current selected item
           };
           this.selectItem =this.selectItem.bind(this);
+          this.handleClear = this.handleClear.bind(this);
+          this.handleEdit = this.handleEdit.bind(this);
+          this.handleDelete = this.handleDelete.bind(this);
+           this.handleSave = this.handleSave.bind(this);
        }
+       handleSave() {
+        let newItem = this.state.currentItem;
+        if (!newItem.carname) {
+          return;
+        }
+
+        fetch("/api/add/", {
+          method: "POST",
+        	headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newItem)
+        }).then(res => res.json())
+        	.then((json) => {
+
+          let newData;
+          if (!newItem._id) { // add new item to array
+            newData = this.state.items;
+            newItem._id = json._id;
+            newData.push(newItem);
+          } else { // update existing item 
+            newData = this.state.items.map((item) => {
+              if (item._id === newItem._id) {
+                item = newItem; 
+              }
+              return item;
+            });          
+          }
+
+// Update state with new array
+          this.setState({items: newData});
+        });
+      }
+
+          handleDelete () {
+            console.log('delete me')
+            fetch('/api/delete/${this.state.currentItem._id}')
+              .then((response) => {
+                 return response.json();
+             })
+              .then((result) => {
+                console.log(result) 
+                // on success, remove deleted item from this.state.items
+              })
+              .catch(err => console.log(err))
+          }
+
+        handleEdit (e) {
+            let newItem = this.state.currentItem;
+            newItem[e.target.name] = e.target.value;
+            this.setState({currentItem: newItem});
+          }
+
+          handleClear () {
+            this.setState({currentItem: {}})
+          }
 
         selectItem (e) {
-            console.log(e.target.innerText)
             const found = this.state.items.find((item) => {
               return item.carname === e.target.innerText;
             });
-            console.log(found)
+          
             this.setState({currentItem: found})
         }
 
@@ -51,9 +115,16 @@ const ItemDetail = (props) => {
         return (
           <div>
           <h2>Car List</h2>
-         <ItemList items={this.state.items}handleClick={this.selectItem} />
+         <ItemList 
+         items={this.state.items} 
+         handleClick={this.selectItem} />
          <hr />
-         <ItemDetail item={this.state.currentItem} />
+         <ItemDetail item={this.state.currentItem} 
+         handleClear={this.handleClear} 
+         handleEdit={this.handleEdit}
+         handleDelete={this.handleDelete}
+         handleSave={this.handleSave}
+         />
           </div>
           );
       }
