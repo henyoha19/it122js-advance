@@ -73,7 +73,7 @@ app.get('/api/cars', (req,res, next) => {
 
 // delete an item
 app.get('/api/delete/:id', (req,res, next) => {
-  Book.deleteOne({"_id":req.params.id }, (err, result) => {
+  Car.deleteOne({"_id":req.params.id }, (err, result) => {
       if (err) return next(err);
       // return # of items deleted
       console.log(result)
@@ -121,10 +121,6 @@ app.get('/api/details', (req, res) => {
   })
   .catch(err => next(err));
 });
-
-
-
-
 
 
  // define 404 handler
