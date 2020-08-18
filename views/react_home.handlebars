@@ -81,7 +81,7 @@ const ItemDetail = (props) => {
 
           handleDelete () {
             console.log('delete me')
-            fetch('/api/delete/${this.state.currentItem._id}')
+            fetch(`/api/delete/${this.state.currentItem._id}`)
               .then((response) => {
                  return response.json();
              })
